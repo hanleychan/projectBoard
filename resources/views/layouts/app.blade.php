@@ -14,6 +14,10 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    
+    <link rel="stylesheet" href="/css/app.css">
+    @yield('headScripts')
+
 
     <style>
         body {
@@ -40,14 +44,19 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Project Signup
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <li><a href="{{ url('/browse') }}">Browse</a></li>
+                    @if (Auth::user())
+                    <li><a href="{{ url('/newProject') }}">Post Project</a></li>
+                    <li><a href="{{ url('/myProjects') }}">My Projects</a></li>
+                    <li><a href="{{ url('/messages') }}">Messages</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

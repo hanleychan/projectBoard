@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'ProjectController@index');
+Route::get('/browse', 'ProjectController@browse');
+Route::get('/newProject', 'ProjectController@newProject');
+Route::post('/processPostProject', 'ProjectController@processNewProject');
+Route::get('/messages', 'ProjectController@messages');
+Route::get('/myProjects', 'ProjectController@myProjects');
