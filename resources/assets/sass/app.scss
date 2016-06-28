@@ -3,3 +3,18 @@
 body {
 	min-width: 320px;
 }
+
+div.container-top-margin {
+	margin-top: 5%;
+}
+
+ul#postDetailsList {
+	list-style-type: none;
+	padding: 0;
+	margin: 1.5%;
+}
+
+span.postDetailsHeading {
+	display: inline-block;
+	width: 125px;
+}

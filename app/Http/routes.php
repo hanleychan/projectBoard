@@ -14,9 +14,12 @@
 
 Route::auth();
 
-Route::get('/', 'ProjectController@index');
-Route::get('/browse', 'ProjectController@browse');
-Route::get('/newProject', 'ProjectController@newProject');
-Route::post('/processPostProject', 'ProjectController@processNewProject');
-Route::get('/messages', 'ProjectController@messages');
-Route::get('/myProjects', 'ProjectController@myProjects');
+Route::get('/', 'ProjectController@index')->name('index');
+Route::get('/browse', 'ProjectController@browse')->name('browse');
+Route::get('/project/{project}', 'ProjectController@viewProject')->name('viewProject');
+Route::get('/newProject', 'ProjectController@newProject')->name('newProject');
+Route::post('/processPostProject', 'ProjectController@processNewProject')->name('processPostProject');
+Route::get('/myProjects', 'ProjectController@myProjects')->name('myProjects');
+Route::get('/reply/{project}', 'ProjectController@replyPost')->name('replyPost');
+Route::post('/processEditProject/{project}', 'ProjectController@processEditProject')->name('processEditProject');
+Route::get('/edit/{project}', 'ProjectController@editPost')->name('editPost');
