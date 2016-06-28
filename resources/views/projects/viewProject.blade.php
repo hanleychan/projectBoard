@@ -17,13 +17,17 @@
 	</div>
 
 	@if ($project->user->id === Auth::id())
-		<p>
+		<div>
 			<a href="{{ route('editPost', ['project' => $project->id]) }}">
 				<button type="button" class="btn btn-primary">Edit Post</button>
 			</a>
-				<button type="button" class="btn btn-primary">Delete Post</button>
-				<button type="button" class="btn btn-primary">Archive Post</button>
-		</p>
+			<form id="deletePostForm" action="{{ route('deletePost', ['project' => $project->id]) }}" method="post">
+				{{ csrf_field() }}
+				{{ method_field('delete') }}	
+				<button type="button" id="deletePost" class="btn btn-primary">Delete Post</button>
+			</form>
+			<button type="button" class="btn btn-primary">Archive Post</button>
+		</div>
 	@else
 		<p><a href="{{ route('replyPost', ['project' => $project->id]) }}">Reply to Post</a></p>
 	@endif
@@ -34,5 +38,11 @@
 
 @section('scripts')
 <script>
+	$("button#deletePost").on("click", function() {
+		var confirmDelete = confirm("Are you sure you want to delete this posting?");
+		if (confirmDelete) {
+			$(this).parent().submit();
+		}
+	});
 </script>
 @endsection

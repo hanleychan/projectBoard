@@ -23,3 +23,4 @@ Route::get('/myProjects', 'ProjectController@myProjects')->name('myProjects');
 Route::get('/reply/{project}', 'ProjectController@replyPost')->name('replyPost');
 Route::post('/processEditProject/{project}', 'ProjectController@processEditProject')->name('processEditProject');
 Route::get('/edit/{project}', 'ProjectController@editPost')->name('editPost');
+Route::delete('/delete/{project}', 'ProjectController@processDeletePost')->name('deletePost');
