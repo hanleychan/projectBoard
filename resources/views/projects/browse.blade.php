@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<h1>Browse Page</h1>
+		<h1>Browse</h1>
 	</div>
 
 	@if(!empty($projects))

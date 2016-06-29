@@ -29,12 +29,7 @@ class ProjectController extends Controller
 	public function index()
 	{
 		// Redirect to browse projects page if not logged in
-		if (!\Auth::user()) {
-			return redirect('/browse');	
-		} else {
-			return redirect('/myProjects');
-		}
-
+		return redirect('/browse');	
 	}
 
 	/**
@@ -102,7 +97,6 @@ class ProjectController extends Controller
 	 */
 	public function processEditProject(Request $request, Project $project)
 	{
-		// Make sure the posting belongs to the user
 		$this->authorize('editPost', $project);
 
 		$this->validate($request, [
@@ -127,11 +121,15 @@ class ProjectController extends Controller
 	 */
 	public function processDeletePost(Request $request, Project $project)
 	{
-		// Make sure the posting belongs to the user
-		$this->authorize('editPost', $project);
+		$this->authorize('deletePost', $project);
 
 		$project->delete();
-		return redirect()->route('myProjects');
+
+		if ($project->open) {
+			return redirect()->route('myProjects');
+		} else {
+			return redirect()->route('archivedProjects');
+		}
 	}
 
 	/**
@@ -139,12 +137,22 @@ class ProjectController extends Controller
 	 */
 	public function processClosePost(Request $request, Project $project)
 	{
-		// Make sure the posting belongs to teh user
 		$this->authorize('editPost', $project);
 
 		$project->open = false;
 		$project->save();
 
 		return redirect()->route('myProjects');
+	}
+
+	/**
+	 * Load archived project postings view
+	 */
+	public function archivedProjects(Request $request)
+	{
+		$archivedProjects = true;
+		$projects = $request->user()->projects()->where('open', false)->orderBy('id', 'desc')->paginate(20);
+
+		return view('projects.myProjects', compact('projects', 'archivedProjects'));
 	}
 }

@@ -25,3 +25,4 @@ Route::get('/edit/{project}', 'ProjectController@editPost')->name('editPost');
 Route::post('/processEditProject/{project}', 'ProjectController@processEditProject')->name('processEditProject');
 Route::delete('/delete/{project}', 'ProjectController@processDeletePost')->name('deletePost');
 Route::post('/close/{project}', 'ProjectController@processClosePost')->name('closePost');
+Route::get('/archivedProjects', 'ProjectController@archivedProjects')->name('archivedProjects');

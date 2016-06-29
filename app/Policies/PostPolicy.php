@@ -15,6 +15,11 @@ class PostPolicy
      */
     public function editPost(User $user, Project $project)
     {
+        return $user->id === $project->user_id && $project->open;    
+    }
+
+    public function deletePost(User $user, Project $project)
+    {
         return $user->id === $project->user_id;    
     }
 }

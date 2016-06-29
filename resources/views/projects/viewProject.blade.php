@@ -6,6 +6,7 @@
 		<li><span class="postDetailsHeading">Posted By:</span>{{ $project->user->name }}</li>
 		<li><span class="postDetailsHeading">Posting Date:</span>{{ date('F d, Y', strtotime($project->created_at)) }}</li>
 		<li><span class="postDetailsHeading">Last Updated:</span>{{ date('F d, Y', strtotime($project->updated_at)) }}</li>
+		<li><span class="postDetailsHeading">Open:</span>{{ ($project->open) ? 'Yes' : 'No' }}</li>
 	</ul>
 
 	<div class="panel panel-default">
@@ -18,6 +19,7 @@
 
 	@if ($project->user->id === Auth::id())
 		<div>
+			@if ($project->open)
 			<a href="{{ route('editPost', ['project' => $project->id]) }}">
 				<button type="button" class="btn btn-primary">Edit Posting</button>
 			</a>
@@ -26,6 +28,9 @@
 				{{ csrf_field() }}
 				<button type="button" id="closePost" class="btn btn-primary">Close Posting</button>
 			</form>
+			@else
+				<button type="button" class="btn btn-primary">Repost</button>
+			@endif
 
 			<form id="deletePostForm" action="{{ route('deletePost', ['project' => $project->id]) }}" method="post">
 				{{ csrf_field() }}

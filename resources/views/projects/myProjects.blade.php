@@ -3,10 +3,19 @@
 @section('content')
 <div class="container">
 	<div class="row">
-		<h1>My Projects Page</h1>
+		@if (isset($archivedProjects) && $archivedProjects === true)
+			<h1>Archived Posts</h1>
+		@else
+			<h1>My Posts</h1>
+		@endif
 	</div>
 
-	<p><a href="">Archived Postings</a></p>
+	@if (isset($archivedProjects) && $archivedProjects === true)
+	<p><a href="{{ route('myProjects') }}">My Posts</a></p>
+	@else
+	<p><a href="{{ route('archivedProjects') }}">Archived Postings</a></p>
+	@endif
+
 
 	@if(!empty($projects))
 		<div class="list-group">
