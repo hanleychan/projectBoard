@@ -9,7 +9,7 @@
 	@if(!empty($projects))
 		<div class="list-group">
 			@foreach($projects as $project)
-				<a href="/project/{{ $project->id }}" class="list-group-item">{{ $project->name }}</a>
+				<a href="{{ route('viewProject', ['project' => $project->id]) }}" class="list-group-item">{{ $project->name }}</a>
 			@endforeach
 		</div>
 		{{ $projects->links() }}

@@ -14,9 +14,9 @@
 	</div>
 
 	@if(isset($project))
-	<form action="{{ url('processEditProject', ['project' => $project->id]) }}" method="post">
+	<form action="{{ route('processEditProject', ['project' => $project->id]) }}" method="post">
 	@else
-	<form action="{{ url('processPostProject') }}" method="post">
+	<form action="{{ route('processPostProject') }}" method="post">
 	@endif
 		{{ csrf_field() }}
 		<div class="row">

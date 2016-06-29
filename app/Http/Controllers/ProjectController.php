@@ -133,4 +133,18 @@ class ProjectController extends Controller
 		$project->delete();
 		return redirect()->route('myProjects');
 	}
+
+	/**
+	 * Process closing a project posting
+	 */
+	public function processClosePost(Request $request, Project $project)
+	{
+		// Make sure the posting belongs to teh user
+		$this->authorize('editPost', $project);
+
+		$project->open = false;
+		$project->save();
+
+		return redirect()->route('myProjects');
+	}
 }

@@ -13,7 +13,7 @@ span.postDetailsHeading {
   display: inline-block;
   width: 125px; }
 
-form#deletePostForm {
+form#deletePostForm, form#closePostForm {
   display: inline; }
 
 /*# sourceMappingURL=app.css.map */

@@ -6,7 +6,7 @@
 		<h1>My Projects Page</h1>
 	</div>
 
-	<p><a href="">Old Postings</a></p>
+	<p><a href="">Archived Postings</a></p>
 
 	@if(!empty($projects))
 		<div class="list-group">
