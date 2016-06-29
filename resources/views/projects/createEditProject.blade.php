@@ -13,7 +13,7 @@
 		</div>
 	</div>
 
-	@if(isset($project))
+	@if(isset($editProject))
 	<form action="{{ route('processEditProject', ['project' => $project->id]) }}" method="post">
 	@else
 	<form action="{{ route('processPostProject') }}" method="post">

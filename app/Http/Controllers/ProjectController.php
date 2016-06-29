@@ -15,11 +15,11 @@ class ProjectController extends Controller
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth', ['only' => [
-			'newProject',
-			'myProjects',
-			'processNewProject',
-			'editPost',
+		$this->middleware('auth', ['except' => [
+			'browse',
+			'viewProject',
+			'replyPost',
+			'index',
 		]]);
 	}
 
@@ -89,7 +89,8 @@ class ProjectController extends Controller
 	public function editPost(Request $request, Project $project) {
 		$this->authorize('editPost', $project);
 
-		return view('projects.createEditProject', compact('project'));
+		$editPost = true;
+		return view('projects.createEditProject', compact('project', 'editPost'));
 	}
 
 	/**
@@ -154,5 +155,15 @@ class ProjectController extends Controller
 		$projects = $request->user()->projects()->where('open', false)->orderBy('id', 'desc')->paginate(20);
 
 		return view('projects.myProjects', compact('projects', 'archivedProjects'));
+	}
+
+	/**
+	 * Load repost project view
+	 */
+	public function repostProject(Request $request, Project $project) 
+	{
+		$this->authorize('repostPost', $project);
+
+		return view('projects.createEditProject', compact('project'));
 	}
 }

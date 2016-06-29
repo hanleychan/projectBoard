@@ -26,3 +26,4 @@ Route::post('/processEditProject/{project}', 'ProjectController@processEditProje
 Route::delete('/delete/{project}', 'ProjectController@processDeletePost')->name('deletePost');
 Route::post('/close/{project}', 'ProjectController@processClosePost')->name('closePost');
 Route::get('/archivedProjects', 'ProjectController@archivedProjects')->name('archivedProjects');
+Route::get('/repostProject/{project}', 'ProjectController@repostProject')->name('repostPost');

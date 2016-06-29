@@ -4,16 +4,16 @@
 <div class="container">
 	<div class="row">
 		@if (isset($archivedProjects) && $archivedProjects === true)
-			<h1>Archived Posts</h1>
+			<h1>My Archived Posts</h1>
 		@else
-			<h1>My Posts</h1>
+			<h1>My Open Posts</h1>
 		@endif
 	</div>
 
 	@if (isset($archivedProjects) && $archivedProjects === true)
-	<p><a href="{{ route('myProjects') }}">My Posts</a></p>
+	<p><a href="{{ route('myProjects') }}">View Open Postings</a></p>
 	@else
-	<p><a href="{{ route('archivedProjects') }}">Archived Postings</a></p>
+	<p><a href="{{ route('archivedProjects') }}">View Archived Postings</a></p>
 	@endif
 
 

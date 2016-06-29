@@ -29,7 +29,9 @@
 				<button type="button" id="closePost" class="btn btn-primary">Close Posting</button>
 			</form>
 			@else
+			<a href="{{ route('repostPost', ['project' => $project->id]) }}">
 				<button type="button" class="btn btn-primary">Repost</button>
+			</a>
 			@endif
 
 			<form id="deletePostForm" action="{{ route('deletePost', ['project' => $project->id]) }}" method="post">
