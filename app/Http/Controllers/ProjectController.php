@@ -46,16 +46,26 @@ class ProjectController extends Controller
 	/**
 	 * Load browse project postings view
 	 */
-	public function browse()
+	public function browse(Request $request)
 	{
-		$projects = \DB::table('projects')->where('open', true)->orderBy('id', 'desc')->paginate(20);
-		return view('projects.browse', compact('projects'));
+		$search = trim($request->search);
+
+		$projects = \DB::table('projects')->where('open', true);
+		if (!empty($search)) {
+			$projects = $projects->where(function($query) use ($search) {
+				$query->where('name', 'like', "%$search%")->orWhere('description', 'like', "%$search%");
+			});
+		}
+
+		$projects = $projects->orderBy('id', 'desc')->paginate(20);
+
+		return view('projects.browse', compact('projects', 'search'));
 	}
 
 	/**
 	 * Load create new project posting view
 	 */
-	public function newProject(Request $request)
+	public function newProject()
 	{
 		return view('projects.createEditProject');
 	}
@@ -113,13 +123,6 @@ class ProjectController extends Controller
 		$project->save();
 
 		return redirect()->route('viewProject', ['project' => $project->id]);
-	}
-
-	public function replyPost(Project $project)
-	{
-		$this->authorize('replyPost', $project);
-
-		return $project;
 	}
 
 	/**

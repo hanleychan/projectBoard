@@ -41,10 +41,6 @@
 				<button type="button" id="deletePost" class="btn btn-primary">Delete Posting</button>
 			</form>
 		</div>
-	@else
-		@if ($project->open)
-			<p><a href="{{ route('replyPost', ['project' => $project->id]) }}">Reply to Post</a></p>
-		@endif
 	@endif
 
 

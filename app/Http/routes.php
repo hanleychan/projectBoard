@@ -20,7 +20,6 @@ Route::get('/project/{project}', 'ProjectController@viewProject')->name('viewPro
 Route::get('/newProject', 'ProjectController@newProject')->name('newProject');
 Route::post('/newProject', 'ProjectController@processNewProject')->name('processPostProject');
 Route::get('/myProjects', 'ProjectController@myProjects')->name('myProjects');
-Route::get('/reply/{project}', 'ProjectController@replyPost')->name('replyPost');
 Route::get('/edit/{project}', 'ProjectController@editPost')->name('editPost');
 Route::post('/processEditProject/{project}', 'ProjectController@processEditProject')->name('processEditProject');
 Route::delete('/delete/{project}', 'ProjectController@processDeletePost')->name('deletePost');

@@ -16,4 +16,7 @@ span.postDetailsHeading {
 form#deletePostForm, form#closePostForm {
   display: inline; }
 
+form#filterResultsForm {
+  margin-bottom: 5%; }
+
 /*# sourceMappingURL=app.css.map */

@@ -16,14 +16,15 @@
 	<p><a href="{{ route('archivedProjects') }}">View Archived Postings</a></p>
 	@endif
 
-
-	@if(!empty($projects))
+	@if(count($projects))
 		<div class="list-group">
 			@foreach($projects as $project)
 				<a href="{{ route('viewProject', ['project' => $project->id]) }}" class="list-group-item">{{ $project->name }}</a>
 			@endforeach
 		</div>
 		{{ $projects->links() }}
+	@else
+		<p>No Results Found</p>
 	@endif
 
 </div>
