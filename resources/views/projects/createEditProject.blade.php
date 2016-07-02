@@ -13,7 +13,7 @@
 		</div>
 	</div>
 
-	@if(isset($editProject))
+	@if(isset($editPost))
 	<form action="{{ route('processEditProject', ['project' => $project->id]) }}" method="post">
 	@else
 	<form action="{{ route('processPostProject') }}" method="post">
@@ -28,6 +28,18 @@
 				    </span>
 				@endif
 				<input type="text" id="name" name="name" class="form-control" maxlength="50" value="{{ (isset($project) && !old('name')) ? $project->name : old('name') }}">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-md-12">
+				<label for="email">Contact Email:</label>
+				@if ($errors->has('email'))
+				    <span class="help-block">
+				        <strong>{{ $errors->first('email') }}</strong>
+				    </span>
+				@endif
+				<input type="text" id="email" name="email" class="form-control" maxlength="255" value="{{ (isset($project) && !old('email')) ? $project->email : (!old('email') ? Auth::user()->email : old('email')) }}">
 			</div>
 		</div>
 

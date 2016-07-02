@@ -48,14 +48,14 @@ class ProjectController extends Controller
 	 */
 	public function browse()
 	{
-		$projects = \DB::table('projects')->paginate(20);
+		$projects = \DB::table('projects')->where('open', true)->orderBy('id', 'desc')->paginate(20);
 		return view('projects.browse', compact('projects'));
 	}
 
 	/**
 	 * Load create new project posting view
 	 */
-	public function newProject()
+	public function newProject(Request $request)
 	{
 		return view('projects.createEditProject');
 	}
@@ -67,10 +67,11 @@ class ProjectController extends Controller
 	{
 		$this->validate($request, [
 			'name' => 'required|max:50',
+			'email' => 'required|max:255|email',
 			'description' => 'required',
 		]);
 
-		$request->user()->projects()->create(array('name'=>$request->name, 'description' => $request->description, 'open' => true));
+		$request->user()->projects()->create(array('name'=>$request->name, 'description' => $request->description, 'open' => true, 'email' => $request->email));
 		return redirect('/myProjects');
 	}
 
@@ -102,11 +103,13 @@ class ProjectController extends Controller
 
 		$this->validate($request, [
 			'name' => 'required|max:50',
+			'email' => 'required|max:255|email',
 			'description' => 'required',
 		]);
 
 		$project->name = $request->name;
 		$project->description = $request->description;
+		$project->email = $request->email;
 		$project->save();
 
 		return redirect()->route('viewProject', ['project' => $project->id]);
@@ -114,6 +117,8 @@ class ProjectController extends Controller
 
 	public function replyPost(Project $project)
 	{
+		$this->authorize('replyPost', $project);
+
 		return $project;
 	}
 

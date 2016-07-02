@@ -4,6 +4,7 @@
 	<h1>{{ $project->name }}</h1>
 	<ul id="postDetailsList">
 		<li><span class="postDetailsHeading">Posted By:</span>{{ $project->user->name }}</li>
+		<li><span class="postDetailsHeading">Contact:</span><a href="mailto:{{ $project->email }}?subject={{ $project->name }}">{{ $project->email }}</a></li>
 		<li><span class="postDetailsHeading">Posting Date:</span>{{ date('F d, Y', strtotime($project->created_at)) }}</li>
 		<li><span class="postDetailsHeading">Last Updated:</span>{{ date('F d, Y', strtotime($project->updated_at)) }}</li>
 		<li><span class="postDetailsHeading">Open:</span>{{ ($project->open) ? 'Yes' : 'No' }}</li>
@@ -41,7 +42,9 @@
 			</form>
 		</div>
 	@else
-		<p><a href="{{ route('replyPost', ['project' => $project->id]) }}">Reply to Post</a></p>
+		@if ($project->open)
+			<p><a href="{{ route('replyPost', ['project' => $project->id]) }}">Reply to Post</a></p>
+		@endif
 	@endif
 
 
