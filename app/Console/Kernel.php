@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             // Archive all postings older older than 60 days
-            \DB::table('projects')->where('created_at', '<', new DateTime('60 days ago'))->update(['open' => false]);
+            \DB::table('projects')->where('created_at', '<', new \DateTime('60 days ago'))->update(['open' => false]);
         })->daily();
     }
 }
