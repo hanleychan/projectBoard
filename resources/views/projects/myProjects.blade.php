@@ -26,7 +26,11 @@
 		</div>
 		{{ $projects->links() }}
 	@else
-		<p>No Results Found</p>
+		@if (isset($archivedProjects) && $archivedProjects === true)
+		<p>No Archived Results Found</p>
+		@else
+		<p>No Open Results Found</p>
+		@endif
 	@endif
 
 </div>
