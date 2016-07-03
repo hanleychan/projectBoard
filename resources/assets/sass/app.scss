@@ -26,3 +26,7 @@ form#deletePostForm, form#closePostForm {
 form#filterResultsForm {
 	margin-bottom: 5%;
 }
+
+p#postingsNote, a#openPostingsLink, a#archivedPostingsLink {
+	font-weight: bold;
+}

@@ -11,10 +11,12 @@
 	</div>
 
 	@if (isset($archivedProjects) && $archivedProjects === true)
-	<p><a href="{{ route('myProjects') }}">View Open Postings</a></p>
+	<p><a href="{{ route('myProjects') }}" id="openPostingsLink">View Open Postings</a></p>
 	@else
-	<p><a href="{{ route('archivedProjects') }}">View Archived Postings</a></p>
+	<p><a href="{{ route('archivedProjects') }}" id="archivedPostingsLink">View Archived Postings</a></p>
 	@endif
+
+	<p id="postingsNote">Note: Postings older than 60 days will be automatically archived</p>
 
 	@if(count($projects))
 		<div class="list-group">

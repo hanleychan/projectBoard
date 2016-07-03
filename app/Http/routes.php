@@ -26,3 +26,9 @@ Route::delete('/delete/{project}', 'ProjectController@processDeletePost')->name(
 Route::post('/close/{project}', 'ProjectController@processClosePost')->name('closePost');
 Route::get('/archivedProjects', 'ProjectController@archivedProjects')->name('archivedProjects');
 Route::get('/repostProject/{project}', 'ProjectController@repostProject')->name('repostPost');
+
+Route::get('/test', function() {
+	\DB::table('projects')->where('created_at', '<', new DateTime('60 days ago'))->update(['open' => false]);
+	$today = new DateTime('60 days ago');
+	var_dump($today);
+});

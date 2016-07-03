@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->call(function () {
+            // Archive all postings older older than 60 days
+            \DB::table('projects')->where('created_at', '<', new DateTime('60 days ago'))->update(['open' => false]);
+        })->daily();
     }
 }
