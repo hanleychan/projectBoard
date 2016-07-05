@@ -9,7 +9,11 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
-			<h1>Post Project</h1>
+            @if(isset($editPost))
+            <h1>Edit Post</h1>
+            @else
+			<h1>Post New Project</h1>
+            @endif
 		</div>
 	</div>
 
